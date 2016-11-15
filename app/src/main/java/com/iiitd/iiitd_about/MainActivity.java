@@ -23,6 +23,20 @@ public class MainActivity extends AppCompatActivity {
     private TextView webdata;
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        String data1 = savedInstanceState.getString("data");
+        webdata.setText(data1);
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        String data = webdata.getText().toString();
+        outState.putString("data",data);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
